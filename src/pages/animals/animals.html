@@ -1,0 +1,50 @@
+<!--
+  Generated template for the AnimalsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>animals</ion-title>
+    <button ion-button item-right clear small (click)="buttonSwitch = !buttonSwitch; buttonSwitch === true? reorderName ='Quitter' : reorderName ='Réordonner'; hiddenElement= !hiddenElement "
+      icon-only>{{reorderName}}
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p>{{now|date:'dd/MM/yyyy'}}</p>
+  <!-- se referer à la doc Angular-->
+  <ion-list>
+    <ion-item-group [reorder]="buttonSwitch" (ionItemReorder)="reorderItems($event)">
+      <ion-item-sliding *ngFor="let animal of animals; let pos=index">
+        <!-- ou $event.applyTo(animals) "SANS CODE .ts" Permet de positionner un élement en le glissant d'une position a à un position b-->
+        <ion-item (click)="playGame(animal.title)">
+          <!--ou ; let pos = index (click)="playGame(pos)" -->
+          <ion-avatar item-left>
+            <ion-img [src]="'assets'+animal.image"></ion-img>
+            <!--ou src = "assets/{{animal.image}}" -->
+          </ion-avatar>
+          <h2>{{animal.title}}</h2>
+          <h4>{{animal.desc}}</h4>
+        </ion-item>
+        <ion-item-options side="right">
+          <p>
+            <ion-icon full large [hidden]="hiddenElement" name="trash" color="danger" (click)="deleteAnimal(pos)"></ion-icon>
+          </p>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <button ion-button item-right clear block (click)="playSound()" icon-only>Jouer un son
+    <ion-icon name="play"></ion-icon>
+  </button>
+</ion-footer>

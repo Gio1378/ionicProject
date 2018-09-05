@@ -1,0 +1,37 @@
+<!--
+  Generated template for the MemoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>memory</ion-title>
+   
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+    <ion-row>
+        <ion-col>moves : </ion-col>
+        <ion-col>{{countTry}}</ion-col>
+        <ion-col>found : </ion-col>
+        <ion-col>{{countRevealed}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  <p>Tentez de trouver la paire correspondante</p>
+  <ion-item>
+    <button class="button" ion-button full (click)="generateCards(); replay()">{{buttonPlay}}</button>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3 *ngFor="let card of cards; let pos = index;" (click)="flipCard(card,pos); replay()">
+      <img class="card" [src]="card.image">
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

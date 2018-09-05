@@ -1,0 +1,111 @@
+<!--
+  Generated template for the FormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>formulaire</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>Hello {{name|capitalize:true}}</h1>
+  <p>Votre adresse email est {{person.email}}</p>
+  <p>vous aimez les {{fruits[2]}}</p>
+  <ion-item>
+      <button ion-button full (click)="goToAnimalsPage()">jeu de son d'animaux</button>
+    </ion-item>
+    <ion-item>
+        <button ion-button full (click)="goToMemoryPage()">Jeu de mémoire</button>
+      </ion-item>
+  <ion-list>
+    <ion-item [hidden]="hiddenElement">
+      <!-- les crochets autour de l'attribut permet d'avoir une variable comme valeur de l'attribut-->
+      <ion-label>Nom</ion-label>
+      <ion-input type="text" [(ngModel)]="person.name"></ion-input>
+      <!--ngModel -->
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Prénom</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="person.email"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label id="custom-label1">Profession</ion-label>
+    <ion-select class="option">
+      <!-- okText, cancelText permet de modifier les valeurs par défaut des boutons de la liste-->
+      <ion-option>Développeur</ion-option>
+      <ion-option>Graphiste</ion-option>
+      <ion-option>Chef de projet</ion-option>
+      <ion-option selected>Architecte</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label floating id="custom-label2">Langages</ion-label>
+    <ion-select class="option2" multiple="true">
+      <ion-option>Java</ion-option>
+      <ion-option>PHP</ion-option>
+      <ion-option>Python</ion-option>
+      <ion-option selected>C++</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Java</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>PHP</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-range min="20" max="80" step="10" pin="true" snaps="true">
+      <!-- pin affiche la valeur-->
+      <ion-icon small range-left name="sunny">
+      </ion-icon>
+      <ion-icon range-right name="sunny">
+      </ion-icon>
+    </ion-range>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>masquer le nom</ion-label>
+
+      <ion-toggle></ion-toggle>
+      <!-- les parenthèses autour d'un attribut permet d'envoyer des informations vers le controller-->
+    </ion-item>
+    <ion-item>
+      <button ion-button full [id]="colorButton" (click)="doClick()">{{textButton}}</button>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label stacked>Valeur recherchée en m</ion-label>
+    <ion-input type="number" [(ngModel)]="inputValues" (input)="resultFeetInches()"></ion-input>
+  </ion-item>
+  <ion-item>
+    {{sizeInImperialMesure}}
+  </ion-item>
+  <ion-label stacked>Fruits</ion-label>
+  <ion-item *ngFor="let item of fruits">
+    {{item}}
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Fruits</ion-label>
+    <ion-input type="text" [(ngModel)]="newFruit"></ion-input>
+  </ion-item>
+  <ion-item>
+    <button ion-button full (click)="newFruitPush()">Ajouter un fruit</button>
+  </ion-item>
+  <ion-item>
+    <button ion-button full (click)="goToHomePage()">Retour page d'acceuil</button>
+  </ion-item>
+</ion-content>
